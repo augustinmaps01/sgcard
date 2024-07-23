@@ -1,0 +1,49 @@
+        Schema::create('sgcard_customer', function (Blueprint $table) {
+            $table->integer('custid')->autoIncrement();
+            $table->string('client_ID')->unique();
+            $table->string('svngs_accno')->unique();
+            $table->string('fname');
+            $table->string('mname');
+            $table->string('lname');
+            $table->enum('status',['active', 'doormant'])->default('active');
+            $table->string('suffix')->nullable();
+            $table->date('birthdate');
+            $table->string('address');
+            $table->timestamps();
+            $table->integer('brid')->constrained();
+
+             $table->foreign('custid')->references('custid')->on('branch')->onDelete('cascade');
+        });
+
+
+
+       Schema::create('sgcard_dprivacy', function (Blueprint $table) {
+            $table->integer('dpr_id')->autoIncrement();
+            $table->string('dpr_front');
+            $table->string('dpr_back');
+            $table->timestamps();
+            $table->integer('custid')->constrained();
+
+            $table->foreign('custid')->references('custid')->on('sgcard_customer')->onDelete('cascade');
+        });
+
+
+       Schema::create('sgcard_card', function (Blueprint $table) {
+            $table->integer('sgcrd_id')->autoIncrement();
+            $table->string('card_front');
+            $table->string('card_back');
+            $table->integer('custid')->constrained();
+            $table->timestamps();
+
+            $table->foreign('custid')->references('custid')->on('sgcard_customer')->onDelete('cascade');
+        });
+
+        Schema::create('sgcard_nais', function (Blueprint $table) {
+            $table->integer('naisid')->autoIncrement();
+            $table->string('nais_front');
+            $table->string('nais_back');
+            $table->integer('custid')->constrained();
+            $table->timestamps();
+
+            $table->foreign('custid')->references('custid')->on('sgcard_customer')->onDelete('cascade');
+        });
