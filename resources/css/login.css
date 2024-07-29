@@ -1,0 +1,136 @@
+:root {
+    --Colors: #fff;
+    --primaryColor: #0052d4;
+    --secondaryColor: black;
+    --fontStyle: "Barlow", "sans-serif";
+    --pos: "cemter";
+}
+
+body {
+    font-family: var(--fontStyle);
+    color: var(--secondaryColor);
+    margin: 10%;
+    background: var(--Colors);
+}
+/* Rectangle in the top */
+.rectangle {
+    position: absolute;
+    width: 98%;
+    height: 70px;
+    left: 17px;
+    top: 18px;
+    background: var(--primaryColor);
+    border-radius: 10px;
+    box-shadow: inset -5px -5px 8px rgba(0, 0, 0, 0.25);
+    justify-content: center;
+}
+.rectangle h1 {
+    margin-top: 12px;
+    margin-left: 10px;
+}
+/* Signin Wrapper */
+.box,
+.box1 {
+    box-sizing: border-box;
+    width: 497.88px;
+    height: 61.22px;
+    margin-top: 10px;
+    border: 1px solid #ced4da;
+    background: rgba(177, 173, 173, 0.3);
+    border-radius: 10px;
+    /* Remove position absolute */
+}
+.box1 {
+    top: 516px;
+}
+.wrapper {
+    color: #023047;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-control {
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    background: #ffeded;
+}
+.card {
+    width: 400px;
+    height: 500px;
+    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
+    perspective: 1000px;
+    background: var(--primaryColor);
+    box-shadow: 16px -12px 14px 0px rgba(79, 79, 79, 0.22) inset;
+    border-radius: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 55px 0;
+}
+#button {
+    width: 150px;
+    margin: 6px 0;
+    height: 40px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    text-align: center;
+    border-radius: 39.5px;
+    background: #fffdfd;
+    box-shadow: 11px -9px 15.4px 4px rgba(0, 0, 0, 0.25) inset;
+    color: #3a389b;
+    font-weight: 600;
+}
+#button:hover {
+    background-color: var(--primaryColor);
+    cursor: pointer;
+    color: var(--Colors);
+}
+h1 {
+    color: var(--Colors);
+    font-size: 38px;
+    font-weight: 600;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
+img {
+    margin-bottom: 15px;
+    height: 120px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.password-input {
+    position: relative;
+}
+#show-password-btn {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+@media only screen and (max-width: 800px) {
+    .rectangle {
+        display: none;
+    }
+}
+.text-black {
+    text-align: center;
+    font-weight: 200;
+}
+.f-text {
+    color: #10cba5;
+}
