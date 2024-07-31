@@ -1,7 +1,7 @@
 <div class="py-4 sm:ml-64">
     {{-- Success is as dangerous as failure. --}}
     <form wire:submit = "store">
-        <div class="container p-6 mx-auto text-center ">
+        <div class="container p-6 mx-auto text-center bg-white">
             <h1 class="text-3xl font-bold text-blue-700">UPLOAD IMAGE </h1>
         @if(session('success'))
             <div id ="targetElement" class="w-1/2 p-4 mx-auto">
@@ -25,145 +25,89 @@
             <!-- Two-Column, Two-Row Grid -->
             <div class="container grid grid-cols-1 gap-4 mx-auto mt-8 md:grid-cols-2">
                 <!-- First Column sigcard front -->
-                {{-- <div x-data="{ imageUrl: '', showPreview: false }" class="flex flex-col items-center justify-center w-full h-full p-8 border-2 border-gray-300 border-dashed rounded-2xl">
-                    <label for="front-upload" class="flex flex-col items-center justify-center w-full h-full cursor-pointer">
-                      <div class="flex items-center justify-center w-full rounded-full lg:w-2/4 h-2/4">
-                        <img x-show="showPreview" :src="imageUrl" alt="sigcard front image" class="w-[400px] h-auto">
-                        <div x-show="!showPreview" class="border rounded bg-gray-100 w-[400px] h-auto"></div>
-                      </div>
-                      <p :class="{} mt-4 text-gray-500">Drag and drop or click here.</p>
-                      <input
-                        id="front-upload"
-                        type="file"
-                        wire:model.live="card_front"
-                        class="hidden"
-                        x-on:change="showPreview = true; imageUrl = URL.createObjectURL($event.target.files[0])"
-                      >
-                    </label>
-                  </div>
-
-                  <!-- Back Card -->
-                  <div class="flex flex-col items-center justify-center w-full h-full p-8 border-2 border-gray-300 border-dashed rounded-2xl">
-                    <label for="front-upload" class="flex flex-col items-center justify-center w-full h-full cursor-pointer">
-                      <div class="flex items-center justify-center w-full rounded-full lg:w-2/4 h-2/4 ">
-                        <img class="w-[400px] h-auto" src="{{ asset('img/cloud.png') }}" alt="sigcard front image">
-
-
-                      </div>
-                      <p class="mt-4 text-gray-500">Drag and drop or click here.</p>
-                      <input id="front-upload" type="file" class="hidden" />
-                    </label>
-                  </div>
-                </div>
-
-                <div class="flex mt-8">
-                  <button class="px-4 py-2 font-bold text-white bg-blue-600 rounded-full hover:bg-blue-700">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 5a1 1 0 00-1 1v7a1 1 0 002 0V6a1 1 0 00-1-1zm-1 9a1 1 0 102 0 1 1 0 00-2 0z" clip-rule="evenodd" />
-                    </svg>
-                  </button>
-                </div> --}}
                 <div class="p-4 rounded">
-                    <div x-data = "{imageUrl: '', showPreview: false}" class="container mx-auto mt-8 text-center">
+                    <div class="container mx-auto mt-8 text-center">
                         <h1 class="mb-8 text-4xl font-bold text-blue-800">SIGCARD FRONT</h1>
 
                         <input
                             class="block w-full mb-2 text-lg border border-blue-300 rounded-lg cursor-pointer text-white-900 dark:text-blue-4 focus:outline-none dark:blue-400"
-                            id="compress"
-                            name="card_front"
-                            wire:model.live = "card_front"
-                            accept="image/*"
-                            type="file"
-                            x-on:change="showPreview = true; imageUrl = URL.createObjectURL($event.target.files[0])"
-                            >
-                        <div class="mb-4 w-fill">
-                            <img x-show="showPreview" :src="imageUrl" alt="sigcard front image" class="w-[400px] h-auto">
-                        </div>
+                            id="compress" name="card_front" wire:model.live = "card_front"  accept="image/*" type="file">
+                        @error('card_front')
+                            <span class="text-red-800 text-[12px] font-normal font-sans"> {{ $message }}</span>
+                        @enderror
+                        @if($card_front)
+                                <img class="w-96" src="{{ $card_front->temporaryUrl() }}">
+                        @endif
                     </div>
                 </div>
                 <div class="p-4 rounded">
-                    <div x-data = "{imageUrl: '', showPreview: false}" class="container mx-auto mt-8 text-center">
+                    <div class="container mx-auto mt-8 text-center">
                         <h1 class="mb-8 text-4xl font-bold text-blue-800">SIGCARD BACK</h1>
                         <input
                             class="block w-full mb-2 text-lg border border-blue-300 rounded-lg cursor-pointer text-white-900 dark:text-blue-4 focus:outline-none dark:blue-400"
-                            id="compress"
-                            name="card_back"
-                            wire:model.live = "card_back"
-                            accept="image/*"
-                            type="file"
-                            x-on:change="showPreview = true; imageUrl = URL.createObjectURL($event.target.files[0])"
-                            >
-                            <div class="mb-4 w-fill">
-                                <img x-show="showPreview" :src="imageUrl" alt="sigcard front image" class="w-[400px] h-auto">
-                            </div>
+                            id="compress" name="card_back" wire:model.live = "card_back" accept="image/*" type="file">
+                        @error('card_back')
+                            <span class="text-red-800 text-[12px] font-normal font-sans"> {{ $message }}</span>
+                        @enderror
+                        @if ($card_back)
+                            <img class="w-96" src="{{ $card_back->temporaryUrl() }}">
+                        @endif
                     </div>
                 </div>
                 <div class="p-4 rounded">
-                    <div  x-data = "{imageUrl: '', showPreview: false}" class="container mx-auto mt-8 text-center">
+                    <div class="container mx-auto mt-8 text-center">
                         <h1 class="mb-8 text-4xl font-bold text-blue-800">NAIS FRONT</h1>
                         <input
                             class="block w-full mb-2 text-lg border border-blue-300 rounded-lg cursor-pointer text-white-900 dark:text-blue-4 focus:outline-none dark:blue-400"
-                            id="compress"
-                            name="nais_front"
-                            wire:model.live = "nais_front"
-                            accept="image/*"
-                            type="file"
-                             x-on:change="showPreview = true; imageUrl = URL.createObjectURL($event.target.files[0])"
-                            >
-                            <div class="mb-4 w-fill">
-                                <img x-show="showPreview" :src="imageUrl" alt="Nais front image" class="w-[400px] h-auto">
-                            </div>
+                            id="compress" name="nais_front" wire:model.live = "nais_front"  accept="image/*" type="file">
+                        @error('nais_front')
+                            <span class="text-red-800 text-[12px] font-normal font-sans"> {{ $message }}</span>
+                        @enderror
+                        @if ($nais_front)
+                            <img class="w-96" src="{{ $nais_front->temporaryUrl() }}"
+                        @endif
                     </div>
                 </div>
                 <div class="p-4 rounded">
-                    <div x-data = "{imageUrl: '', showPreview: false}" class="container mx-auto mt-8 text-center">
+                    <div class="container mx-auto mt-8 text-center">
                         <h1 class="mb-8 text-4xl font-bold text-blue-800">NAIS BACK</h1>
                         <input
                             class="block w-full mb-2 text-lg border border-blue-300 rounded-lg cursor-pointer text-white-900 dark:text-blue-4 focus:outline-none dark:blue-400"
-                            id="compress"
-                            name="nais_back"
-                            wire:model.live = "nais_back"
-                            accept="image/*"
-                            type="file"
-                            x-on:change="showPreview = true; imageUrl = URL.createObjectURL($event.target.files[0])"
-                            >
-                        <div class="mb-4 w-fill">
-                            <img x-show="showPreview" :src="imageUrl" alt="Nais back image" class="w-[400px] h-auto">
-                        </div>
+                            id="compress" name="nais_back" wire:model.live = "nais_back" accept="image/*" type="file">
+                        @error('nais_back')
+                            <span class="text-red-800 text-[12px] font-normal font-sans"> {{ $message }}</span>
+                        @enderror
+                        @if($nais_back)
+                            <img class="w-96" src="{{ $nais_back->temporaryUrl() }}">
+                        @endif
                     </div>
                 </div>
                 <div class="p-4 rounded">
-                    <div x-data = "{imageUrl: '', showPreview: false}" class="container mx-auto mt-8 text-center">
+                    <div class="container mx-auto mt-8 text-center">
                         <h1 class="mb-8 text-4xl font-bold text-blue-800">DATA PRIVACY FRONT</h1>
                         <input
                             class="block w-full mb-2 text-lg border border-blue-300 rounded-lg cursor-pointer text-white-900 dark:text-blue-4 focus:outline-none dark:blue-400"
-                            id="compress"
-                            name="dpr_front"
-                            wire:model.live = "dpr_front"
-                            accept="image/*"
-                            type="file"
-                            x-on:change="showPreview = true; imageUrl = URL.createObjectURL($event.target.files[0])"
-                            >
-                        <div class="mb-4 w-fill">
-                            <img x-show="showPreview" :src="imageUrl" alt="Nais back image" class="w-[400px] h-auto">
-                        </div>
+                            id="compress" name="dpr_front" wire:model.live = "dpr_front" accept="image/*" type="file">
+                        @error('dpr_front')
+                            <span class="text-red-800 text-[12px] font-normal font-sans"> {{ $message }}</span>
+                        @enderror
+                        @if($dpr_front)
+                                <img class="w-96" src="{{ $dpr_front->temporaryUrl() }}">
+                        @endif
                     </div>
                 </div>
                 <div class="p-4 rounded">
-                    <div x-data ="{imageUrl: '', showPreview: false}" class="container mx-auto mt-8 text-center">
+                    <div class="container mx-auto mt-8 text-center">
                         <h1 class="mb-8 text-4xl font-bold text-blue-800">DATA PRIVACY BACK</h1>
                         <input
                             class="block w-full mb-2 text-lg border border-blue-300 rounded-lg cursor-pointer text-white-900 dark:text-blue-4 focus:outline-none dark:blue-400"
-                            id="compress"
-                            name="dpr_back"
-                            wire:model.live = "dpr_back"
-                            accept="image/*"
-                            type="file"
-                            x-on:change = "showPreview = true; imageUrl = URL.createObjectURL($event.target.files[0])"
-                            >
-                            <div class="w-full mb-4">
-                                <img x-show="showPreview" :src="imageUrl" alt="Data Privacy back image" class="w-[400px] h-auto">
-                            </div>
+                            id="compress" name="dpr_back" wire:model.live = "dpr_back" accept="image/*" type="file">
+                        @error('dpr_front')
+                            <span class="text-red-800 text-[12px] font-normal font-sans"> {{ $message }}</span>
+                        @enderror
+                        @if($dpr_back)
+                                <img class="w-96" src="{{ $dpr_back->temporaryUrl() }}">
+                        @endif
                     </div>
                 </div>
 

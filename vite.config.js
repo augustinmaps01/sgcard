@@ -9,5 +9,8 @@ export default defineConfig({
             refresh: ['resources/views/**'],
         }),
     ],
+<<<<<<< HEAD
 
+=======
+>>>>>>> 44208d30f52b1bae7c941b3155b07deb90fa6535
 });
