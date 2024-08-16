@@ -5,13 +5,25 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\roleviewController;
 use App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\uploadController;
+<<<<<<< HEAD
 use App\Livewire\AddUser;
 use App\Livewire\Dashboard;
 use App\Livewire\CustomerEntry;
 use App\Livewire\Login;
 use App\Livewire\UploadImage;
 use App\Livewire\UserProfile;
+=======
+use App\Livewire\Admin\AddUser;
+use App\Livewire\Admin\Dashboard;
+use App\Livewire\Login;
+use App\Livewire\Admin\LogsReport;
+use App\Livewire\Admin\UserProfile;
+use App\Livewire\Admin\UploadImage;
+use App\Livewire\Admin\CustomerEntry;
+>>>>>>> 2789cab52378b3a101bef54dcf2ad1b29401a0c1
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Compliance\HomePage;
+
 
 
 
@@ -22,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', [LoginController::class, 'loginpage']);
 
 // livewire components
+<<<<<<< HEAD
 Route::get('/login', Login::class)->name('login');
 
 Route::get('/userProfile', UserProfile::class)->name('userProfile');
@@ -30,6 +43,38 @@ Route::get('/addNew', CustomerEntry::class)->name('addnew');
 Route::get('/upload', UploadImage::class)->name('upload');
 Route::get('/addUser',AddUser::class)->name('adduser');
 
+=======
+// admin route
+Route::get('/', Login::class)->name('login');
+
+//? admin ROUTING MIDDLEWARE
+Route::middleware(['auth', 'RoleMiddleware'])->group(function () {
+    Route::middleware(['role:Admin'])->group(function () {
+        Route::get('/dashboard', Dashboard::class)->name('dashboard');
+        Route::get('/addNew', CustomerEntry::class)->name('addnew');
+        Route::get('/upload', UploadImage::class)->name('upload');
+        Route::get('/addUser',AddUser::class)->name('adduser');
+        Route::get('/logs', LogsReport::class)->name('logs');
+    });
+    Route::middleware(['role:Compliance'])->group(function (){
+        Route::get('/dashboard-compliance', HomePage::class)->name('compliance.dashboard');
+    });
+
+});
+Route::get('/userProfile', UserProfile::class)->name('userProfile');
+
+
+//  Compliance
+
+
+
+
+// Audit
+
+// Manager
+
+// users
+>>>>>>> 2789cab52378b3a101bef54dcf2ad1b29401a0c1
 
 
 

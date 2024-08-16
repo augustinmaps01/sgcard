@@ -16,6 +16,7 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+<<<<<<< HEAD
         if(!Auth::check())
         {
             return redirect('login');
@@ -24,6 +25,27 @@ class RoleMiddleware
         if($user->roles){
 
         }
+=======
+   if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+           switch($role->user_type){
+            case 'Admin':
+                return redirect()->route('dashboard');
+            case 'Compliance':
+                return redirect()->route('compliance.dashboard');
+            case 'Audit':
+                return redirect()->route('dashboard');
+            case 'Manager':
+                return redirect()->route('dashboard');
+            case 'User':
+                return redirect()->route('home');
+            default:
+                return redirect()->route('login');
+           }
+   }
+>>>>>>> 2789cab52378b3a101bef54dcf2ad1b29401a0c1
         return $next($request);
     }
 }

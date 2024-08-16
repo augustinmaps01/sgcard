@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -27,7 +27,7 @@ class SearchBox extends Component
                             ->get();
         }
         sleep(2);
-        return view('livewire.search-box', [
+        return view('livewire.admin.search-box', [
             'results' => $this->results,
             'isEmpty' =>$this->isEmpty
         ]);

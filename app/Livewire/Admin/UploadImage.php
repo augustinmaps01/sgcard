@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 
 use Livewire\Attributes\Layout;
@@ -284,6 +284,6 @@ class UploadImage extends Component
     }
     public function render()
     {
-        return view('livewire.upload-image');
+        return view('livewire.admin.upload-image');
     }
 }

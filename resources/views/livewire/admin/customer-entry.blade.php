@@ -1,4 +1,4 @@
 <div>
     {{-- The Master doesn't talk, he acts. --}}
-    <livewire:addnew-customer lazy  />
+    <livewire:Admin.addnew-customer lazy  />
 </div>
