@@ -1,5 +1,5 @@
 <div class="sm:ml-64">
-    <div class="container bg-white shadow-3xl mb-28">
+    <div class="container py-3 bg-white shadow-3xl mb-28">
         {{-- <div id="" class="p-4">
             <div id="targetElement" class="flex items-center justify-center p-2 mt-4 text-center text-green-400 border border-green-600 rounded-lg shadow-lg bg-white-400" role="alert">
                 <svg class="w-[30px] h-[30px] text-green-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -82,6 +82,7 @@
                     @enderror
                 </div>
                 <div class="grid md:grid-cols-2 md:gap-6">
+<<<<<<< HEAD:resources/views/livewire/admin/addnew-customer.blade.php
                     <div class="relative z-0 w-full mb-4 group">
                         <input type="text"
                                 id="inputField"
@@ -94,6 +95,24 @@
                                 pattern="^[A-Z][a-z]*$"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder="" required />
+=======
+<<<<<<< HEAD
+                    <div x-data = "{inputText: ''}" class="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            id="inputField"
+                            x-model = "inputText"
+                            @input = "inputText = $event.target.value.toUpperCase()"
+                            wire:model.live.debounce.200ms = "firstname"
+                            id="inputField" autocomplete="off"
+=======
+                    <div class="relative z-0 w-full mb-5 group">
+                        <input type="text" id="inputField" name="fname"  wire:model.live.debounce.200ms = "firstname" id="inputField" autocomplete="off"
+>>>>>>> 44208d30f52b1bae7c941b3155b07deb90fa6535
+                            pattern="^[A-Z][a-z]*$"
+                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder="" required />
+>>>>>>> ffa96da3e807fb3df940a8288871f420e162b924:resources/views/livewire/addnew-customer.blade.php
 
                         <label for="firstname"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First
@@ -102,8 +121,19 @@
                                 <span class="text-red-800 text-[12px] font-normal font-sans"> {{ $message }}</span>
                             @enderror
                     </div>
+<<<<<<< HEAD
+                    <div x-data = "{inputText: ''}" class="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            name="mname"
+                            x-model = "inputText"
+                            @input = "inputText = $event.target.value.toUpperCase()"
+                            wire:model.live.debounce.200ms = "middlename"
+                            id="inputField" autocomplete="off"
+=======
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="text" name="mname" wire:model.live.debounce.200ms = "middlename" id="inputField" autocomplete="off"
+>>>>>>> 44208d30f52b1bae7c941b3155b07deb90fa6535
                             pattern="^[A-Z][a-z]*$"
                             x-data = "{inputValue: ''}"
                             x-model = "inputValue"
@@ -119,6 +149,7 @@
                                 <span class="text-red-800 text-[12px] font-normal font-sans"> {{ $message }}</span>
                             @enderror
                     </div>
+<<<<<<< HEAD:resources/views/livewire/admin/addnew-customer.blade.php
                     <div class="relative z-0 w-full mb-4 group">
                         <input type="text"
                                 name="lname"
@@ -129,6 +160,23 @@
                                 x-model = "inputValue"
                                 x-on:input="inputValue = $event.target.value.charAt(0).toUpperCase() + $event.target.value.slice(1)"
                                 pattern="^[A-Z][a-z]*$"
+=======
+<<<<<<< HEAD
+                    <div x-data = "{inputText: ''}" class="relative z-0 w-full mb-5 group">
+                        <input
+                            type="text"
+                            name="lname"
+                            x-model ="inputText"
+                            @input = "inputText = $event.target.value.toUpperCase()"
+                            wire:model.live.debounce.200ms = "lastname"
+                            id="inputField"
+                            autocomplete="off"
+                            pattern="^[A-Z][a-z]*$"
+=======
+                    <div class="relative z-0 w-full mb-5 group">
+                        <input type="text" name="lname" wire:model.live.debounce.200ms = "lastname" id="inputField" autocomplete="off" pattern="^[A-Z][a-z]*$"
+>>>>>>> 44208d30f52b1bae7c941b3155b07deb90fa6535
+>>>>>>> ffa96da3e807fb3df940a8288871f420e162b924:resources/views/livewire/addnew-customer.blade.php
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" " required />
                             @error('lastname')
