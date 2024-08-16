@@ -21,7 +21,7 @@ use Livewire\Attributes\Lazy;
 
 use Illuminate\Support\Facades\File;
 
-use function Livewire\store;
+
 
 #[Lazy]
 #[Title('Upload')]
@@ -53,46 +53,83 @@ class UploadImage extends Component
     {
         return [
             'custid' => 'required',
-            'card_front' => 'required|max:3024',
-            'card_back' => 'required|max:3024',
-            'nais_front' => 'required|max:3024',
-            'nais_back' => 'required|max:3024',
-            'dpr_front' => 'required|max:3024',
-            'dpr_back' => 'required|max:3024'
+            'card_front' => 'required',
+            'card_back' => 'required',
+            'nais_front' => 'required',
+            'nais_back' => 'required',
+            'dpr_front' => 'required',
+            'dpr_back' => 'required'
         ];
     }
 
-    public function messages()
+    public function message()
     {
         return [
-            'card_front.max' => 'Error: File size exceeds the maximum allowed limit of 3 MB. ',
-            'card_back.max' => 'Error: File size exceeds the maximum allowed limit of 3 MB.',
             'card_front.required' => 'Sigcard front image is required.',
             'card_back.required' => 'Sigcard back image is required.',
-
-            'nais_front.max' => 'Error: File size exceeds the maximum allowed limit of 3 MB.',
-            'nais_back.max' => 'Error: File size exceeds the maximum allowed limit of 3 MB.',
             'nais_back.required' => 'Nais back image is required.',
             'nais_front.required' => 'Nais front image is required.',
-
-            'dpr_front.max' => 'Error: File size exceeds the maximum allowed limit of 3 MB.',
-            'dpr_back.max' => 'Error: File size exceeds the maximum allowed limit of 3 MB.',
             'dpr_front.required' => 'Dataprivacy front image is required.',
             'dpr_back.required' => 'Dataprivacy back image is required.',
 
         ];
     }
-    public function resizeImage($file, $width, $height) {
-        $manager = new ImageManager(new Driver());
-        $image = $manager->read($file);
-        $image->scaleDown(width: $width);
-        $image->scaleDown(height: $height);
-        $image->save($file);
-    }
+
     public function store()
     {
-
         $this->validate();
+
+        // // Fetch the latest customer data
+
+        // $customer_data =Customer::select('custid')->latest()->first();
+
+        // $customer = Customer::join('branch', 'sgcard_customer.brid', '=', 'branch.brid')
+        //     ->select('sgcard_customer.*', 'branch.*')->latest()->first();
+
+        // // Prepare the directory for storing images
+        // $directoryName = "{$customer->lname} {$customer->fname} {$customer->mname}";
+        // $branchLocationMap = [
+        //     2 => '01 - MAIN', 3 => '02 - JASAAN', 4 => '03 - SALAY',
+        //     5 => '04 - CDO', 6 => '05 - MARAMAG', 7 => '06 - GINGOOG BLU',
+        //     8 => '07 - CAMIGUIN BLU', 9 => '08 - BUTUAN BLU', 10 => '09 - MANOLO BLU'
+        // ];
+        // $location_dir = 'img/uploads/' . $branchLocationMap[$customer->brid] . '/' . $directoryName;
+        // $fullLocationDir = public_path('storage/' . $location_dir);
+
+        // if (!File::exists($fullLocationDir)) {
+        //     File::makeDirectory($fullLocationDir, 0777, true);
+        // }
+
+        // // Prepare the image manager
+        // $manager = new ImageManager(new Driver());
+
+        // // Handle file uploads and scaling
+        // $frontFilename = $this->handleFileUpload($this->card_front, 'SIGCARD', 'front', $location_dir, $manager);
+        // $backFilename = $this->handleFileUpload($this->card_back, 'SIGCARD', 'back', $location_dir, $manager);
+
+        // Sigcard::create([
+        //     'custid' => $customer_data,
+        //     'card_front' => $frontFilename,
+        //     'card_back' => $backFilename
+        // ]);
+
+        // $frontFilename = $this->handleFileUpload($this->nais_front, 'NAIS', 'front', $location_dir, $manager);
+        // $backFilename = $this->handleFileUpload($this->nais_back, 'NAIS', 'back', $location_dir, $manager);
+
+        // Nais::create([
+        //     'custid' => $customer_data,
+        //     'nais_front' => $frontFilename,
+        //     'nais_back' => $backFilename
+        // ]);
+
+        // $frontFilename = $this->handleFileUpload($this->dpr_front, 'DATA PRIVACY', 'front', $location_dir, $manager);
+        // $backFilename = $this->handleFileUpload($this->dpr_back, 'DATA PRIVACY', 'back', $location_dir, $manager);
+
+        // Dataprivacy::create([
+        //     'custid' => $customer_data,
+        //     'dpr_front' => $frontFilename,
+        //     'dpr_back' => $backFilename
+        // ]);
         $customer_data = Customer::latest()->value('custid');
         $customer = Customer::join('branch', 'sgcard_customer.brid', '=', 'branch.brid')
         ->select('sgcard_customer.*', 'branch.*')->latest()->first();
@@ -227,9 +264,24 @@ class UploadImage extends Component
 
         session()->flash('success', 'Uploaded successfully');
         return $this->redirect('/upload');
+    }
 
-   }
+    private function handleFileUpload($file, $prefix, $side, $location_dir, $manager)
+    {
+        if ($file) {
+            $extension = $file->getClientOriginalExtension();
+            $imageName = "{$prefix}-{$side}.{$extension}";
+            $filename = "{$location_dir}/{$imageName}";
 
+            $image = $manager->read($file);
+            $image->scaleDown(width: 900)->scaleDown(height: 1000);
+            $image->save('storage/' . $filename);
+
+            return $filename;
+        }
+
+        return null;
+    }
     public function render()
     {
         return view('livewire.upload-image');

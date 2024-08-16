@@ -1,25 +1,34 @@
 
-<div class="">
-    <div class="">
-        <div class="py-4 text-center my-20 text-white bg-[#0052D4] rounded-t-md">
-            <h1 class="text-2xl font-bold">SIGCARD SYSTEM</h1>
-        </div>
-        <div class="p-8 bg-[#0052D4] shadow-lg rounded-xl">
-            <div class="pt-4 mt-8 mb-8 text-center">
-                <h2 class="mb-4 text-xl font-bold">RBT BANK INC.,</h2>
-                <img src="{{ Vite::asset('resources/images/logos.png') }}" alt="RBT BANK INC." class="mx-auto mb-4" style="width: 100px; height: 100px;">
+
+<div>
+    <div>
+        <div class="px-20 pt-2 mt-16 pb-24 bg-[#0052D4] flex-item-center justify-center shadow-xl shadow-cyan-500/5 border-2 border-gray-200  rounded-xl">
+            <div class="mb-10 text-center ">
+                <h2 class="mb-4 text-4xl font-bold text-white">RBT BANK INC.,</h2>
+                <img src="{{ Vite::asset('resources/images/logos.png') }}" alt="RBT BANK INC." class="mx-auto mb-4" style="height: 120px;">
             </div>
             <form>
                 <div class="mb-4">
                     <input type="text" placeholder="Username" class="w-full p-3 text-gray-700 bg-white rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
                 </div>
-                <div class="relative mb-4">
-                    <input type="password" placeholder="Password" class="w-full p-3 text-gray-700 bg-white rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
-                        <!-- Add your show/hide password icon here -->
+                <div x-data="{ show: false }" class="relative mb-4">
+                    <input :type="show ? 'text' : 'password'" placeholder="Password" class="w-full p-3 py-2 text-gray-700 bg-white rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <div @click="show = !show" class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+                        <svg x-show="!show" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+                            <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                          </svg>
+
+                          <svg x-show = "show" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                          </svg>
+
                     </div>
                 </div>
-                <button type="submit" class="w-full py-3 text-white bg-blue-700 rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">LOGIN</button>
+                <div class="flex justify-center mb-4">
+                    <button type="submit" class="w-2/3 py-3 border-solid border-2 border-sky-50 shadow-md text-[#0052D4] bg-white font-bold rounded-3xl hover:bg-[#0052D4] hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400">LOGIN</button>
+                </div>
+
             </form>
         </div>
         <div class="mt-4 text-center text-gray-500">

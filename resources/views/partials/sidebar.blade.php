@@ -6,7 +6,7 @@
             <li>
                 <a href="{{ route('dashboard') }}"
                     class="flex items-center mt-4 p-4 text-white rounded-sm hover:bg-[#0e63eb]">
-                    <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75" aria-hidden="true" xmlns=""
+                    <svg class="flex-shrink-0 w-8 h-6 text-white transition duration-75" aria-hidden="true" xmlns=""
                         fill="currentColor" viewBox="0 0 18 18">
                         <path
                             d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -20,7 +20,7 @@
                 <button type="button"
                     class="flex items-center w-full p-4 text-base text-white transition duration-75 rounded-lg group hover:bg-[#0e63eb]"
                     aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                    <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    <svg class="w-8 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 8h0m3 0h0m3 0h0m-8 3h16M4 19h16c.6 0 1-.4 1-1V6c0-.6-.4-1-1-1H4a1 1 0 0 0-1 1v12c0 .6.4 1 1 1Z" />
@@ -44,8 +44,6 @@
                                     clip-rule="evenodd" />
                             </svg>
                             <span class="flex-1 text-sm text-white ms-3 whitespace-nowrap">Customers</span>
-
-
                         </a>
                     </li>
                     <li>
@@ -80,12 +78,21 @@
         <li>
             <a href="{{ route('sigcard.show') }}"
                 class="flex items-center mt-4 p-4 text-white rounded-sm hover:bg-[#0e63eb]">
-                <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                <svg class="w-8 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M15 9h3m-3 3h3m-3 3h3m-6 1c-.3-.6-1-1-1.6-1H7.6c-.7 0-1.3.4-1.6 1M4 5h16c.6 0 1 .4 1 1v12c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1V6c0-.6.4-1 1-1Zm7 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
                 </svg>
                 <span class="flex-1 text-xl text-white ms-3 whitespace-nowrap">View Entry</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('adduser') }}"
+                class="flex items-center mt-4 p-4 text-white rounded-sm hover:bg-[#0e63eb]">
+                <svg class="w-8 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+                  </svg>
+                <span class="flex-1 text-xl text-white ms-3 whitespace-nowrap">Add user</span>
             </a>
         </li>
         </ul>

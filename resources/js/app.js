@@ -1,9 +1,11 @@
 import './bootstrap';
 import '../css/app.css';
 import 'flowbite';
-import { Dismiss } from 'flowbite';
 import Alpine from 'alpinejs';
 import mask from '@alpinejs/mask';
+import intersect from '@alpinejs/intersect'
+
+Alpine.plugin(intersect)
 
 
 Alpine.plugin(mask)
@@ -66,29 +68,6 @@ import.meta.glob([
 
 
 
-
-  const $targetEl = document.getElementById('targetElement');
-  const $triggerEl = document.getElementById('triggerElement');
-
-  const options = {
-    transition:'transition-opacity',
-    duration:500,
-    timing:'ease-out',
-
-    onHide: (context, targetEl) => {
-      console.log('element has been dismissed');
-      console.log(targetEl);
-    }
-  };
-  const instanceOptions = {
-    id:'targetElement',
-    override:true
-  };
-  const dismiss = new Dismiss($targetEl, $triggerEl, options, instanceOptions);
-
-  setTimeout(()=> {
-    dismiss.hide();
-  }, 2000)
 
 
 

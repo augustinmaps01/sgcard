@@ -37,7 +37,8 @@ return [
     | In this case, the view returned by CreatePost will render into $slot.
     |
     */
-    'layout' => 'layouts.app',
+
+    'layout' => 'layout.app',
 
     /*
     |---------------------------------------------------------------------------

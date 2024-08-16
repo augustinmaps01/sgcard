@@ -25,7 +25,6 @@
         @endif
 
     <script src="{{ asset('js/index.js') }}"></script>
-    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     @livewireScripts
 </body>
 </html>

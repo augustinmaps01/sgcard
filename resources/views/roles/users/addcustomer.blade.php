@@ -1,7 +1,7 @@
 @extends('Layouts.user layout.layoutCustomer');
 
 @section('content')
-    <div class="h-screen flex items-center justify-center overflow-auto">
+    <div class="flex items-center justify-center h-screen overflow-auto">
         <form class="max-w-md mx-auto" action = "/addcustomer" method="POST">
             <h1 class="text-center">Customer Information</h1>
             @csrf

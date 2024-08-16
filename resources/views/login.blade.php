@@ -31,7 +31,7 @@
                     <span class="invalid-feedback"></span>
                 </div>
                 <div class="password-input form-group">
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                    <input type="text" name="usercode" id="password" class="form-control" placeholder="User Code"
                         required autocomplete="off">
                     <span class="invalid-feedback"></span>
                     <button type="button" id="show-password-btn">

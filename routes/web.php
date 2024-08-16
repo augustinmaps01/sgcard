@@ -2,14 +2,15 @@
 
 
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\roleviewController;
 use App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\uploadController;
+use App\Livewire\AddUser;
 use App\Livewire\Dashboard;
 use App\Livewire\CustomerEntry;
 use App\Livewire\Login;
 use App\Livewire\UploadImage;
+use App\Livewire\UserProfile;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,14 +19,17 @@ use Illuminate\Support\Facades\Route;
 
 // landing page
 
-Route::get('/', [LoginController::class, 'loginpage']);
+// Route::get('/', [LoginController::class, 'loginpage']);
 
 // livewire components
-Route::get('/logins', Login::class)->name('login');
+Route::get('/login', Login::class)->name('login');
 
+Route::get('/userProfile', UserProfile::class)->name('userProfile');
 Route::get('/dashboard', Dashboard::class)->name('dashboard');
 Route::get('/addNew', CustomerEntry::class)->name('addnew');
 Route::get('/upload', UploadImage::class)->name('upload');
+Route::get('/addUser',AddUser::class)->name('adduser');
+
 
 
 
@@ -45,24 +49,6 @@ Route::controller(SuperAdmin::class)->group(function () {
     Route::get('/Customer', 'customerView')->name('customer.shows');
 });
 
-
-
-//? customer information
-
-
-// Route::resource('customer', CustomerController::class);
-// Route::resource('customer.upload', uploadController::class);
-
-
-// uploading
-
-// admin
-
-// users
-
-// Route::get('/homepage', [users::class, 'homepage'])->name('home');
-// Route::get('/uploadshow', [users::class, 'uploadImg'])->name('upload.show');
-//? customer section and upload
 
 
 Route::controller(CustomerController::class)->group(function () {
