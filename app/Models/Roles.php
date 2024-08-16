@@ -4,11 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-=======
-use Illuminate\Database\Eloquent\Relations\HasMany;
->>>>>>> 2789cab52378b3a101bef54dcf2ad1b29401a0c1
 
 class Roles extends Model
 {
@@ -25,15 +21,9 @@ class Roles extends Model
         'updated_at'
     ];
 
-<<<<<<< HEAD
     public function users() : BelongsTo
     {
-        return $this->belongsTo(users::class);
-=======
-    public function users() : HasMany
-    {
-        return $this->hasMany(User::class);
->>>>>>> 2789cab52378b3a101bef54dcf2ad1b29401a0c1
+        return $this->belongsTo(User::class);
     }
 
 
