@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Customer;
@@ -8,6 +8,7 @@ use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use App\Models\Branch;
 use Livewire\Attributes\Lazy;
+use Carbon\Carbon;
 
 class AddnewCustomer extends Component
 {
@@ -26,22 +27,12 @@ class AddnewCustomer extends Component
     public $brname;
     public $selectbrname;
     public $brid;
-
-    #[Validate('image|max:1024')]
     public $photo;
 
     public function mount ()
     {
         $this->brname = Branch::where('brcode', '!=' , '00')->get();
     }
-
-
-public function updatedInputValue($value)    {
-    $this->firstname = ucfirst($value);
-    $this->middlename = ucfirst($value);
-    $this->lastname = ucfirst($value);
-}
-
 
     protected $messages = [
         'client_ID.required' => 'The Client ID input field is required.',
@@ -70,9 +61,17 @@ public function updatedInputValue($value)    {
 
         $this->validate();
         $filename = null;
-        if($this->photo) {
-           $filename = $this->photo->store(path:'img/uploads/customers');
+
+        if ($this->photo) {
+            // Store the file and get the relative path
+            $file = $this->photo;
+            $extensions = $file->getClientOriginalExtension();
+            $name = $this->lastname . ',' . $this->firstname . ' ' . $this->middlename.'.' . $extensions;
+            $filename = 'img/customerProfile/'.$name;
+            $file->storeAs(path:'img/customerProfile/', name: $name);
+            // Debugging info
         }
+        $now = Carbon::now();
         Customer::create([
             'client_ID' => $this->client_ID,
             'svngs_accno' => $this->svngs_accno,
@@ -84,7 +83,9 @@ public function updatedInputValue($value)    {
             'birthdate' => $this->birthdate,
             'address' => $this->address,
             'brid' => $this->brid,
-            'photo' => $filename ? public_path('storage/'.$filename)  : null,
+            'photo' => $filename,
+            'created_at' => $now,
+            'updated_at' => $now,
 
         ]);
 
@@ -104,7 +105,8 @@ public function updatedInputValue($value)    {
         'birthdate' => 'required|date|before_or_equal:today',
         'address' => 'required',
         'brname' => 'required',
-        'photo' => 'required|max:1024|image|mimes:png,jpg,jpeg,gif'
+         'photo' => 'required|image|max:1024'
+
     ];
    }
 
@@ -126,7 +128,7 @@ public function updatedInputValue($value)    {
     public function render()
     {
 
-        return view('livewire.addnew-customer');
+        return view('livewire.admin.addnew-customer');
     }
     public function selectBranch($brid)
     {

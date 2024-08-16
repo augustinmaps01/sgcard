@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
@@ -20,7 +20,7 @@ class Dashboard extends Component
     public function render()
     {
 
-        return view('livewire.dashboard');
+        return view('livewire.admin.dashboard');
     }
 
 }

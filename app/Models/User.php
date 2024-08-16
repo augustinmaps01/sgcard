@@ -6,6 +6,8 @@ namespace App\Models;
 
 use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,11 +21,27 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = "users";
+    protected $primaryKey = 'userid';
     protected $fillable = [
+        'userid',
+        'udid',
         'username',
-        'password1',
-        'userlevel'
+        'password',
+        'role_id',
+        'created_at',
+        'updated_at',
+
     ];
+
+    public function userDetails(): HasOne
+    {
+        return $this->hasOne(userDetails::class, 'udid');
+    }
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Roles::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

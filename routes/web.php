@@ -2,15 +2,19 @@
 
 
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\roleviewController;
 use App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\uploadController;
-use App\Livewire\Dashboard;
-use App\Livewire\CustomerEntry;
+use App\Livewire\Admin\AddUser;
+use App\Livewire\Admin\Dashboard;
 use App\Livewire\Login;
-use App\Livewire\UploadImage;
+use App\Livewire\Admin\LogsReport;
+use App\Livewire\Admin\UserProfile;
+use App\Livewire\Admin\UploadImage;
+use App\Livewire\Admin\CustomerEntry;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Compliance\HomePage;
+
 
 
 
@@ -18,14 +22,39 @@ use Illuminate\Support\Facades\Route;
 
 // landing page
 
-Route::get('/', [LoginController::class, 'loginpage']);
+// Route::get('/', [LoginController::class, 'loginpage']);
 
 // livewire components
-Route::get('/logins', Login::class)->name('login');
+// admin route
+Route::get('/', Login::class)->name('login');
 
-Route::get('/dashboard', Dashboard::class)->name('dashboard');
-Route::get('/addNew', CustomerEntry::class)->name('addnew');
-Route::get('/upload', UploadImage::class)->name('upload');
+//? admin ROUTING MIDDLEWARE
+Route::middleware(['auth', 'RoleMiddleware'])->group(function () {
+    Route::middleware(['role:Admin'])->group(function () {
+        Route::get('/dashboard', Dashboard::class)->name('dashboard');
+        Route::get('/addNew', CustomerEntry::class)->name('addnew');
+        Route::get('/upload', UploadImage::class)->name('upload');
+        Route::get('/addUser',AddUser::class)->name('adduser');
+        Route::get('/logs', LogsReport::class)->name('logs');
+    });
+    Route::middleware(['role:Compliance'])->group(function (){
+        Route::get('/dashboard-compliance', HomePage::class)->name('compliance.dashboard');
+    });
+
+});
+Route::get('/userProfile', UserProfile::class)->name('userProfile');
+
+
+//  Compliance
+
+
+
+
+// Audit
+
+// Manager
+
+// users
 
 
 
@@ -45,24 +74,6 @@ Route::controller(SuperAdmin::class)->group(function () {
     Route::get('/Customer', 'customerView')->name('customer.shows');
 });
 
-
-
-//? customer information
-
-
-// Route::resource('customer', CustomerController::class);
-// Route::resource('customer.upload', uploadController::class);
-
-
-// uploading
-
-// admin
-
-// users
-
-// Route::get('/homepage', [users::class, 'homepage'])->name('home');
-// Route::get('/uploadshow', [users::class, 'uploadImg'])->name('upload.show');
-//? customer section and upload
 
 
 Route::controller(CustomerController::class)->group(function () {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
@@ -17,6 +17,6 @@ class CustomerEntry extends Component
     #[url]
     public function render()
     {
-        return view('livewire.customer-entry');
+        return view('livewire.admin.customer-entry');
     }
 }

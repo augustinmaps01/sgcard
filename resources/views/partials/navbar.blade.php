@@ -38,21 +38,21 @@
                         </div>
                         <ul class="py-1" role="none">
                             <li>
-                                <a href="#"
-                                    class="block px-4 py-2 font-serif text-sm text-gray-700 hover:bg-blue-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white"
+                                <a href="{{ route('userProfile') }}"
+                                    class="block px-4 py-2 font-serif text-sm text-gray-700 hover:bg-blue-700 hover:text-white"
                                     role="menuitem">Profile
                                 </a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block px-4 py-2 font-serif text-sm text-gray-700 hover:bg-blue-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white"
+                                    class="block px-4 py-2 font-serif text-sm text-gray-700 hover:bg-blue-700 hover:text-white"
                                     role="menuitem">Sign out
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div class="mt-1 ms-2">
-                        <a href="#"
+                        <a aria-expanded="true" href="#" data-dropdown-toggle="dropdown-user"
                             class="font-serif text-lg font-semibold leading-none text-white uppercase">Charles
                             Matthew G.Coming
                         </a>

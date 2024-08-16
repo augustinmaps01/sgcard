@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Carbon\Carbon;
 class Customer extends Model
 {
     use HasFactory;
     protected $table = 'sgcard_customer';
 
     protected $dateFormat = 'Y-m-d';
+    public $timestamps = true;
     protected $primaryKey = 'custid';
     protected $fillable = [
         'custid',
@@ -34,12 +34,7 @@ class Customer extends Model
 
     ];
 
-    public function getLastUpdateAttribute($value)
-    {
-        // Assuming $value is in the format 'Y-m-d H:i:s'
-        $this->attributes['birthdate'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
 
-    }
     public function dataprivacy(): HasMany
     {
         return $this->hasMany(Dataprivacy::class);
